@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Backup</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+{% load staticfiles %}
+<link href="{% static "css/backup.css" %}" rel="stylesheet">
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script src="{% static "js/backup.js" %}"></script>
+<!--<script src="{% static "js/jquery-1.11.2.js"></script>-->
+</head>
+<body>
+	<div id="left">
+		<div>
+			<p>忠胜格力</p>
+		</div>
+		<div id="list">
+			<ul>
+				<!--<li class="index">主页</li>-->
+				<li class="products">产品中心</li>
+				<li class="news">新闻中心</li>
+				<li class="recruitment">人才招聘</li>
+				<li class="culture">企业文化</li>
+				<li class="stores">店面展示</li>
+				<li class="engineering">工程案例</li>
+				<li class="contact">联系我们</li>
+			</ul>
+		</div>
+	</div>
+		<div id="top">
+			{% if permission %}
+			<div class="account_manage">
+				<div>
+					<img src="{% static "img/backup/users.png" %}">
+				</div>
+			</div>
+			{% endif %}
+			<div class="my_account">
+				<div>
+					<img src="{% static "img/backup/settings.png" %}">
+				</div>
+			</div>
+			<div>
+				<div>
+					<img src="{% static "img/backup/exit.png" %}">
+				</div>
+			</div>
+		</div>
+	<div id="right">
+		<div id="content">
+			<div id="function">
+				<!--
+				<ul class="index">
+					<li class="index_pic">背景图片</li>
+					<li class="index_phrase">宣传标语</li>
+					<li class="index_products">产品展示栏</li>
+					<li class="index_news">新闻展示栏</li>
+				</ul>
+				-->
+				<ul class="products">
+					<!--
+					<li class="products_pic">背景图片</li>
+					-->
+					<li class="products_type">产品分类</li>
+					<li class="products_details">产品详情</li>
+					<li class="products_susume">推荐产品</li>
+				</ul>
+				<ul class="news">
+					<!--
+					<li class="news_pic">背景图片</li>
+					-->
+					<li class="news_edit">新闻编辑</li>
+				</ul>
+				<ul class="recruitment">
+					<li class="recruitment_type">岗位类别</li>
+					<li class="recruitment_require">招聘要求</li>
+				</ul>
+				<ul class="culture">
+					<li class="culture_summary">公司简介</li>
+					<li class="culture_spirit">格力精神</li>
+					<li class="culture_speech">领导致辞</li>
+					<li class="culture_honor">企业荣誉</li>
+				</ul>
+				<ul class="contact">
+					<li class="contact_details">联系详情</li>
+				</ul>
+				<ul class="stores">
+					<li class="stores_show">店面展示</li>
+				</ul>
+				<ul class="engineering">
+					<li class="engineering_show">工程案例</li>
+				</ul>
+				<p class="clear"></p>
+			</div>
+			<div id="details">
+				<div class="welcome_phrase">
+					<p>欢迎光临忠胜格力后台中心</p>
+				</div>
+				<div class="account_manage">
+					<div class="title">权限管理</div>
+					<div>
+						<table>
+							<tr>
+								<td>
+									<span>账号列表：</span>
+								</td>
+								<td>
+									<table>
+										<tr>
+											<td class="account">
+												<span>帐号</span>
+											</td>
+											<td class="permission">
+												<span>权限</span>
+											</td>
+											<td class="operation">
+												<span>操作</span>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="my_account">
+					<div class="title">个人帐号管理</div>
+					<div>
+						<table>
+							<tr>
+								<td>
+									<span>我的帐号：</span>
+								</td>
+								<td>
+									<span class="account"></span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>我的密码：</span>
+								</td>
+								<td>
+									<input type="password">
+									<p></p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>新密码：</span>
+								</td>
+								<td>
+									<input type="password">
+									<p></p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>再输入一遍：</span>
+								</td>
+								<td>
+									<input type="password">
+									<p></p>
+								</td>
+							</tr>
+							<tr>
+								<td> </td>
+								<td>
+									<span class="button">确定</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<!--
+				<div class="index_pic">
+					<div>
+						<span>当前图片：</span>
+						<img src="{% static "img/index/bgpic4.jpg" align="top">
+					</div>
+					<div>
+						<span>上传图片：</span>
+						<input type="file">
+					</div>
+				</div>
+				<div class="index_phrase">
+					<div>
+						<table>
+							<tr>
+								<td><span>当前标语：</span></td>
+								<td><span>核心科技 世界水准</span></td>
+							</tr>
+							<tr>
+								<td><span>新标语：</span></td>
+								<td>
+									<input id="new_phrase" type="text">
+									<span class="button">确定</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="index_products">3</div>
+				<div class="index_news">4</div>
+				-->
+				<div class="products_pic">
+					<div>
+						<span>当前图片：</span>
+						<img src="{% static "img/index/bgpic4.jpg" %}" align="top">
+					</div>
+					<div>
+						<span>上传图片：</span>
+						<input type="file">
+					</div>
+				</div>
+				<div class="products_type">
+					<div>
+						<table>
+							<tr class="first_class">
+								<td>
+									<span>产品一级分类：</span>
+								</td>
+								<td class="first_class">
+									<select>
+									</select>
+								</td>
+								<td>
+									<span class="button details1">添加</span>
+									<span class="button details1">删除</span>
+									<span class="button details1">修改</span>
+									<span class="button details1">排序</span>
+								</td>
+							</tr>
+							<tr class="edit add1">
+								<td>
+									<span>添加一级分类：</span>
+								</td>
+								<td>
+									<input type="text">
+								</td>
+								<td>
+									<span class="button">确定</span>
+									<span class="button">取消</span>
+								</td>
+							</tr>
+							<tr class="edit alter1">
+								<td>
+									<span>修改一级分类：</span>
+								</td>
+								<td>
+									<input type="text">
+								</td>
+								<td>
+									<span class="button">确定</span>
+									<span class="button">取消</span>
+								</td>
+							</tr>
+							<tr class="second_class">
+								<td>
+									<span>二级分类：</span>
+								</td>
+								<td class="second_class">
+									<select>
+									</select>
+								</td>
+								<td>
+									<span class="button details2">添加</span>
+									<span class="button details2">删除</span>
+									<span class="button details2">修改</span>
+									<span class="button details2">排序</span>
+								</td>
+							</tr>
+							<tr class="edit add2">
+								<td>
+									<span>添加二级分类：</span>
+								</td>
+								<td>
+									<input type="text">
+								</td>
+								<td>
+									<span class="button">确定</span>
+									<span class="button">取消</span>
+								</td>
+							</tr>
+							<tr class="edit alter2">
+								<td>
+									<span>修改二级分类：</span>
+								</td>
+								<td>
+									<input type="text">
+								</td>
+								<td>
+									<span class="button">确定</span>
+									<span class="button">取消</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="products_details">
+					<div>
+						<table>
+							<tr>
+								<td>
+									<span>产品一级分类：</span>
+								</td>
+								<td>
+									<select>
+										<option></option>
+									</select>
+									<select>
+									</select>
+								</td>
+							</tr>
+							<tr class="series">
+								<td>
+									<span>系列型号：</span>
+								</td>
+								<td>
+									<select>
+									</select>
+									<span class="button details">添加</span>
+									<span class="button details">删除</span>
+									<span class="button details">编辑</span>
+									<span class="button details">排序</span>
+								</td>
+							</tr>
+							<tr class="edit add_product">
+								<td>
+									<span>添加产品：</span>
+								</td>
+								<td>
+									<table>
+										<tr>
+											<td>
+												<span>系列</span>
+											</td>
+											<td>
+												<span>型号</span>
+											</td>
+											<td>
+												<span>操作</span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<input type="text">
+											</td>
+											<td>
+												<input type="text">
+											</td>
+											<td>
+												<span class="button">确定</span>
+												<span class="button">取消</span>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr class="edit edit_product">
+								<td>
+									<span>编辑产品：</span>
+								</td>
+								<td>
+									<table>
+										<tr>
+											<td>
+												<span>系列</span>
+											</td>
+											<td>
+												<span>型号</span>
+											</td>
+											<td>
+												<span>操作</span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<input type="text">
+											</td>
+											<td>
+												<input type="text">
+											</td>
+											<td>
+												<span class="button">确定</span>
+												<span class="button">取消</span>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>展示图片：</span>
+								</td>
+								<td class="products_pics details">
+								</td>
+							</tr>
+							<tr class="edit_pic">
+								<td>
+									<span>图片编辑：</span>
+								</td>
+								<td class="details">
+									<span class="button">添加</span>
+									<span class="button">删除</span>
+									<span class="button">排序</span>
+								</td>
+							</tr>
+							<tr class="edit add_pic">
+								<td>
+									<span>添加图片：</span>
+								</td>
+								<td class="details">
+									<input type="file" accept="image/*"><span class="button">确定</span><span class="button">取消</span>
+								</td>
+							</tr>
+							<tr class="edit_spec">
+								<td>
+									<span>产品参数：</span>
+								</td>
+								<td class="details">
+									<select id="select_spec">
+										<option>选择参数分类</option>
+										<option>主体</option>
+										<option>功能</option>
+										<option>规格</option>
+									</select>
+									<span class="button">使用同类型产品模版</span>
+									<table class="spec_table">
+										<tr>
+											<td>
+												<span>参数类型</span>
+											</td>
+											<td>
+												<span>具体描述</span>
+											</td>
+											<td>
+												<span>操作</span>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr class="edit">
+								<td>
+									<span>存放表格代码：</span>
+								</td>
+								<td class="save_table">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>产品宣传：</span>
+								</td>
+								<td class="details article">
+									<div></div>
+									<span class="button click_edit">点击这里编辑</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="products_susume">
+					<div>
+						<table>
+							<tr>
+								<td>
+									<span>选择分类：</span>
+								</td>
+								<td>
+									<select>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>推荐产品：</span>
+								</td>
+								<td>
+									<table class="details">
+									</table>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<!--
+				<div class="news_pic">
+					<div>
+						<span>当前图片：</span>
+						<img src="{% static "img/index/bgpic4.jpg" align="top">
+					</div>
+					<div>
+						<span>上传图片：</span>
+						<input type="file">
+					</div>
+				</div>
+				-->
+				<div class="news_edit">
+					<div>
+						<table>
+							<tr>
+								<td>
+									<span>新闻列表：</span>
+								</td>
+								<td>
+									<table>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td> </td>
+								<td>
+									<div id="page"></div>
+								</td>
+							</tr>
+							<tr class="alter edit">
+								<td>
+									<span>编辑新闻：</span>
+								</td>
+								<td>
+									<span class="button click_edit">点击编写新闻</span>
+								</td>
+							</tr>
+							<tr class="add">
+								<td>
+									<span>添加新闻：</span>
+								</td>
+								<td>
+									<span class="button click_edit">点击编写新闻</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="recruitment_type">
+					<div>
+						<table>
+							<tr>
+								<td>
+									<span>岗位类别：</span>
+								</td>
+								<td class="rclass">
+									<select>
+									</select>
+								</td>
+								<td>
+									<span class="button details">添加</span>
+									<span class="button details">删除</span>
+									<span class="button details">修改</span>
+								</td>
+							</tr>
+							<tr class="edit add">
+								<td>
+									<span>添加岗位类别：</span>
+								</td>
+								<td>
+									<input type="text">
+								</td>
+								<td>
+									<span class="button">确定</span>
+									<span class="button">取消</span>
+								</td>
+							</tr>
+							<tr class="edit alter">
+								<td>
+									<span>修改岗位类别：</span>
+								</td>
+								<td>
+									<input type="text">
+								</td>
+								<td>
+									<span class="button">确定</span>
+									<span class="button">取消</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="recruitment_require">
+					<div>
+						<table>
+							<tr>
+								<td>
+									<span>岗位选择：</span>
+								</td>
+								<td class="rclass">
+									<select>
+									</select>
+								</td>
+								<td> </td>
+							</tr>
+							<tr class="info">
+								<td>
+									<span>具体要求：</span>
+								</td>
+								<td class="details">
+									<div></div>
+								</td>
+							</tr>
+							<tr class="edit_require">
+								<td>
+									<span>编辑要求：</span>
+								</td>
+								<td>
+									<span class="button click_edit">点击这里编辑</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="culture_summary">
+					<div>
+						<table>
+							<tr>
+								<td>
+									<span>简介正文：</span>
+								</td>
+								<td id="intro"><span> </span><p><br></p></td>
+							</tr>
+							<tr>
+								<td>
+									<span>编辑：</span>
+								</td>
+								<td>
+									<span class="button click_edit">点击这里编辑</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="culture_spirit">
+					<div>
+						<table>
+							<tr>
+								<td>
+									<span>正文：</span>
+								</td>
+								<td id="spirit">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>编辑：</span>
+								</td>
+								<td>
+									<span class="button click_edit">点击这里编辑</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="culture_speech">
+					<div>
+						<table>
+							<tr>
+								<td>
+									<span>正文：</span>
+								</td>
+								<td id="speech">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>编辑：</span>
+								</td>
+								<td>
+									<span class="button click_edit">点击这里编辑</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="culture_honor">
+					<div>
+						<table>
+							<tr>
+								<td>
+									<span>图片：</span>
+								</td>
+								<td id="honor_pics">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>删除图片：</span>
+								</td>
+								<td>
+									<span class="button">删除</span>
+								</td>
+							</tr>
+							<tr class="add">
+								<td>
+									<span>添加图片：</span>
+								</td>
+								<td>
+									<input type="file" accept="image/*"><span class="button">确定</span><span class="button">取消</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="contact_details">
+					<div>
+						<table>
+							<tr>
+								<td>联系方式：</td>
+								<td id="contact_way">
+								</td>
+							</tr>
+							<tr>
+								<td>编辑联系方式：</td>
+								<td>
+									<span class="button click_edit">点击这里编辑</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="stores_show">
+					<div>
+						<table>
+							<tr class="name_edit">
+								<td>店面展示：</td>
+								<td>
+									<select></select>
+									<span class="button details1">添加</span>
+									<span class="button details1">删除</span>
+									<span class="button details1">编辑</span>
+									<span class="button details1">排序</span>
+								</td>
+							</tr>
+							<tr class="edit add">
+								<td>添加店铺：</td>
+								<td>
+									<input type="text"><span class="button">确定</span><span class="button">取消</span>
+								</td>
+							</tr>
+							<tr class="edit alter">
+								<td>编辑店铺：</td>
+								<td>
+									<input type="text"><span class="button">确定</span><span class="button">取消</span>
+								</td>
+							</tr>
+							<tr class="c_pic">
+								<td>封面图片：</td>
+								<td class="details">
+									<img src="">
+								</td>
+							</tr>
+							<tr class="edit_pic">
+								<td>编辑封面：</td>
+								<td class="details">
+									<input type="file" accept="image/*"><span class="button">确定</span><span class="button">取消</span>
+								</td>
+							</tr>
+							<tr class="c_detail">
+								<td>店面详情描述：</td>
+								<td class="details">
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td>编辑店面详情：</td>
+								<td class="details">
+									<span class="button click_edit">点击这里编辑</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="engineering_show">
+					<div>
+						<table>
+							<tr class="name_edit">
+								<td>工程案例：</td>
+								<td>
+									<select></select>
+									<span class="button details1">添加</span>
+									<span class="button details1">删除</span>
+									<span class="button details1">编辑</span>
+									<span class="button details1">排序</span>
+								</td>
+							</tr>
+							<tr class="edit add">
+								<td>添加工程：</td>
+								<td>
+									<input type="text"><span class="button">确定</span><span class="button">取消</span>
+								</td>
+							</tr>
+							<tr class="edit alter">
+								<td>编辑工程：</td>
+								<td>
+									<input type="text"><span class="button">确定</span><span class="button">取消</span>
+								</td>
+							</tr>
+							<tr class="c_pic">
+								<td>封面图片：</td>
+								<td class="details">
+									<img src="">
+								</td>
+							</tr>
+							<tr class="edit_pic">
+								<td>编辑封面：</td>
+								<td class="details">
+									<input type="file" accept="image/*"><span class="button">确定</span><span class="button">取消</span>
+								</td>
+							</tr>
+							<tr class="c_detail">
+								<td>详情描述：</td>
+								<td class="details">
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td>编辑详情：</td>
+								<td class="details">
+									<span class="button click_edit">点击这里编辑</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="full">
+		<div id="bottom"></div>
+		<div id="waiting">
+			<p>正在修改中，请稍等...</p>
+		</div>
+		<div class="account_manage box">
+			<div class="delete">
+				<p>确定删除 <span class="account"></span> 用户？</p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+		</div>
+		<div class="products_type box">
+			<div class="delete1">
+				<p>确定删除 <span class="first_class"></span> 一级分类？</p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+			<div class="delete2">
+				<p>确定删除 <span class="second_class"></span> 二级分类？</p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+			<div class="sort1">
+				<div></div>
+				<p><span class="up">↑</span><span class="down">↓</span></p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+			<div class="sort2">
+				<div></div>
+				<p><span class="up">↑</span><span class="down">↓</span></p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+		</div>
+		<div class="products_details box">
+			<div class="delete1">
+				<p>确定删除 <span class="product_name"></span> 产品？</p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+			<div class="delete2">
+				<p>确定删除 <span class="pic_name"></span> 图片？</p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+			<div class="delete3">
+				<p>确定删除 <span class="spec_name"></span> 参数？</p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+			<div class="sort1">
+				<div></div>
+				<p><span class="up">↑</span><span class="down">↓</span></p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+			<div class="sort2">
+				<div class="products_pics"></div>
+				<p><span class="left">←</span><span class="right">→</span></p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+			<div class="sort3">
+				<div></div>
+				<p><span class="up">↑</span><span class="down">↓</span></p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+			<div class="template">
+				<p>使用模版后将覆盖该产品现在的参数，是否继续？</p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+		</div>
+		<div class="products_susume box">
+			<div class="delete">
+				<p>确定删除 <span class="product_name"></span> 推荐产品？</p>
+				<p class="fc data"></p>
+				<p class="sc data"></p>
+				<p class="pname data"></p>
+				<p class="number data"></p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+		</div>
+		<div class="news_edit box">
+			<div class="delete">
+				<p>确定删除 <span class="news_title"></span> 新闻？</p>
+				<p class="news_date data"></p>
+				<p class="number data"></p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+		</div>
+		<div class="recruitment_type box">
+			<div class="delete">
+				<p>确定删除 <span class="class"></span> 职业分类？</p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+		</div>
+		<div class="culture_honor box">
+			<div class="delete">
+				<p>确定删除 <span class="pic_name"></span> 图片？</p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+		</div>
+		<div class="engineering_show box">
+			<div class="delete">
+				<p>确定删除 <span class="engineering_name"></span> ？</p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+			<div class="sort">
+				<div></div>
+				<p><span class="up">↑</span><span class="down">↓</span></p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+		</div>
+		<div class="stores_show box">
+			<div class="delete">
+				<p>确定删除 <span class="store_name"></span> ？</p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+			<div class="sort">
+				<div></div>
+				<p><span class="up">↑</span><span class="down">↓</span></p>
+				<span class="button">确定</span>
+				<span class="button cancel">取消</span>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	</script>
+</body>
+</html>

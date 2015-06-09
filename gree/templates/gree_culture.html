@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Culture</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+{% load staticfiles %}
+<link href="{% static "css/culture.css" %}" rel="stylesheet">
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script src="{% static "js/culture.js" %}"></script>
+</head>
+<body>
+    <div id="nav">
+		<ul id="first_ul">
+            <a href="/"><li>首页</li></a>
+            <a href="/product"><li>产品中心</li></a>
+            <a href="/news"><li>新闻中心</li></a>
+            <a href="/shop"><li>店面展示</li></a>
+            <a href="/case"><li>工程案例</li></a>
+            <a href="/job"><li>人才招聘</li></a>
+            <a href="/culture"><li>企业文化</li></a>
+            <a href="/contact"><li>联系我们</li></a>
+			<p class="clear"></p>
+		</ul>
+	</div>
+	<div id="subtitle">
+		<h1><span>&nbsp;RECRUITMENT</span> / 企业文化</h1>
+	</div>
+	<div id="c_details">
+		<div id="gree_intro">
+			<div id="intro2">
+				<div>公 司 简 介</div>
+				{{ companyinfo|safe }}
+			</div>
+		</div>
+		<div id="gree_spirit">
+			<div>格 力 精 神</div>
+			{{ greemind|safe }}
+		</div>
+		<div id="leader_speech">
+			<div>
+				<div>领 导 致 辞</div>
+				{{ leaderword|safe }}
+			</div>
+		</div>
+		<div id="gree_honor">
+			<div>企 业 荣 誉</div>
+			<div id="pic_box">
+                {% for picpath in picpathls%}
+                <img src="{{ picpath }}">
+                {% endfor %}
+			</div>
+		</div>
+	</div>
+    <div id="foot_bar">
+    	<ul>
+    		<li><a href="/culture">关于我们</a></li>
+    		<li>&nbsp;|&nbsp;</li>
+    		<li><a href="/contact">联系我们</a></li>
+    		<li>&nbsp;|&nbsp;</li>
+    		<li><a href="/job">人才招聘</a></li>
+    	</ul>
+    	<p>版权所有 CopyRight(C)2013-2015 东莞市忠胜格力产品销售中心</p>
+    </div>
+    <div id="popup">
+        <div id="popup_bottom"></div>
+        <div id="popup_top">
+            <div id="origin_pic">
+                <img src="">
+            </div>
+        </div>
+    </div>
+
+	<script type="text/javascript">
+	</script>
+</body>
+</html>
