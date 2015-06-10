@@ -73,6 +73,9 @@ class Products(models.Model):
     ProductInfoContent = models.TextField()
     Sequence = models.IntegerField()
 
+    def __unicode__(self):
+        return self.ProductName
+
 class ProductPic(models.Model):
     '''
     产品展示图片表格。
@@ -91,6 +94,9 @@ class ProductPic(models.Model):
     Picture = models.ImageField(upload_to='product_picture')
     ImageName = models.CharField(max_length= 150)
 
+    def __unicode__(self):
+        return self.ImageName
+
 class ProductInfoPic(models.Model):
     '''
     产品详细介绍图片表格。
@@ -107,6 +113,9 @@ class ProductInfoPic(models.Model):
     Picture = models.ImageField(upload_to='product_info_picture')
     ImageName = models.CharField(max_length= 150)
 
+    def __unicode__(self):
+        return self.ImageName
+
 class CacheProductInfoPic(models.Model):
     '''
     产品详细介绍缓存图片表格。
@@ -121,6 +130,9 @@ class CacheProductInfoPic(models.Model):
     ImageName = models.CharField(max_length= 150)
     CreateTime = models.DateTimeField()
 
+    def __unicode__(self):
+        return self.ImageName
+
 class BestProduct(models.Model):
     '''
     产品页默认推荐产品的数据表格。
@@ -134,6 +146,9 @@ class BestProduct(models.Model):
     ClassOne = models.ForeignKey('ClassOne')
     ClassTwo = models.ForeignKey('ClassTwo')
     ProductName = models.CharField(max_length = 250)
+
+    def __unicode__(self):
+        return self.ProductName
 
 #新闻相关的数据表格=========================================================
 class News(models.Model):

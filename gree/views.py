@@ -15,8 +15,8 @@ def index(requrst):
     elif len(newsobjls) == 1:
         picpath = ''
         try:
-            picname = NewsPic.objects.filter(News = newsobjls[0])[0].ImageName
-            picpath = '/getPic/' + picname
+            newspicobj = NewsPic.objects.filter(News = newsobjls[0])[0]
+            picpath = newspicobj.Picture.url
         except IndexError:
             pass
         title = newsobjls[0].Title
@@ -26,8 +26,8 @@ def index(requrst):
     else:
         picpath = ''
         try:
-            picname = NewsPic.objects.filter(News = newsobjls[0])[0].ImageName
-            picpath = '/getPic/' + picname
+            newspicobj = NewsPic.objects.filter(News = newsobjls[0])[0]
+            picpath = newspicobj.Picture.url
         except IndexError:
             pass
         title = newsobjls[0].Title
@@ -37,8 +37,8 @@ def index(requrst):
 
         picpath1 = ''
         try:
-            picname1 = NewsPic.objects.filter(News = newsobjls[1])[0].ImageName
-            picpath1 = '/getPic/' + picname1
+            newspicobj1 = NewsPic.objects.filter(News = newsobjls[1])[0]
+            picpath1 = newspicobj1.Picture.url
         except:
             pass
         title1 = newsobjls[1].Title
@@ -57,8 +57,8 @@ def index(requrst):
             productpicobjls = ProductPic.objects.filter(Product = bestproductobj.Product)
             path = ''
             try:
-                picname = productpicobjls[0].ImageName
-                path = '/getPic/' + picname
+                picobj = productpicobjls[0]
+                path = picobj.Picture.url
             except IndexError:
                 pass
             productls.append(dict(Title = productname, PicPath = path, classone = bestproductobj.ClassOne.ClassName, classtwo = bestproductobj.ClassTwo.ClassName))
@@ -98,8 +98,8 @@ def index(requrst):
             productpicobjls = ProductPic.objects.filter(Product = bestproductobj.Product)
             path = ''
             try:
-                picname = productpicobjls[0].ImageName
-                path = '/getPic/' +  picname
+                picobj = productpicobjls[0]
+                path = picobj.Picture.url
             except IndexError:
                 pass
             productls.append(dict(Title = bestproductobj.ProductName, PicPath = path, classone = bestproductobj.ClassOne.ClassName, classtwo = bestproductobj.ClassTwo.ClassName))
@@ -141,8 +141,8 @@ def product(requrst):
             productpicobjls = ProductPic.objects.filter(ClassOne = classoneobj, ClassTwo = bestproductobj.ClassTwo, Product = bestproductobj.Product).order_by('Sequence')
             path = ''
             try:
-                pinname = productpicobjls[0].ImageName
-                path = '/getPic/' + pinname
+                pinobj = productpicobjls[0]
+                path = pinobj.url
             except IndexError:
                 pass
             bestprols.append(dict(classtwo=classtwo, name=pname, path=path))
@@ -160,8 +160,12 @@ def getProducts(requrst):
         classtwoobj = ClassTwo.objects.get(PreClass = classoneobj, Sequence = 0)
         productobjls = Products.objects.filter(ClassOne = classoneobj, ClassTwo = classtwoobj).order_by('Sequence')
         for productobj in productobjls:
-            productpicobj = ProductPic.objects.get(Product = productobj, Sequence = 0)
-            path = '/getPic/' + productpicobj.ImageName
+            path = ''
+            try:
+                productpicobj = ProductPic.objects.get(Product = productobj, Sequence = 0)
+                path = productpicobj.Picture.url
+            except Exception:
+                pass
             products.append(dict(picsrc = path, productname = productobj.ProductName))
         jsonObject = json.dumps({'products':products},ensure_ascii = False)
         #加上ensure_ascii = False，就可以保持utf8的编码，不会被转成unicode
@@ -172,8 +176,12 @@ def getProducts(requrst):
         classtwoobj = ClassTwo.objects.get(PreClass = classoneobj, ClassName = classtwo)
         productobjls = Products.objects.filter(ClassOne = classoneobj, ClassTwo = classtwoobj).order_by('Sequence')
         for productobj in productobjls:
-            productpicobj = ProductPic.objects.get(Product = productobj, Sequence = 0)
-            path = '/getPic/' + productpicobj.ImageName
+            path = ''
+            try:
+                productpicobj = ProductPic.objects.get(Product = productobj, Sequence = 0)
+                path = productpicobj.Picture.url
+            except Exception:
+                pass
             products.append(dict(picsrc = path, productname = productobj.ProductName))
         jsonObject = json.dumps({'products':products},ensure_ascii = False)
         #加上ensure_ascii = False，就可以保持utf8的编码，不会被转成unicode
@@ -185,7 +193,7 @@ def getProducts(requrst):
         picsrc = []
         productpicobjls = ProductPic.objects.filter(Product = productobj).order_by('Sequence')
         for productpicobj in productpicobjls:
-            path = '/getPic/' + productpicobj.ImageName
+            path = productpicobj.Picture.url
             picsrc.append(path)
         jsonObject = json.dumps({'picsrc':picsrc, 'table':productobj.ProductInfo, 'content':productobj.ProductInfoContent},ensure_ascii = False)
         #加上ensure_ascii = False，就可以保持utf8的编码，不会被转成unicode
@@ -236,8 +244,8 @@ def shop(requrst):
     for shopobj in shopobjls:
         path = ''
         try:
-            picname = ShopFirstPic.objects.get(Shop = shopobj).ImageName
-            path = '/getPic/' + picname
+            picobj = ShopFirstPic.objects.get(Shop = shopobj)
+            path = picobj.Picture.url
         except ShopFirstPic.DoesNotExist:
             pass
         shopls.append(dict(Title = shopobj.Title, path = path))
@@ -256,8 +264,8 @@ def case(requrst):
     for caseobj in caseobjls:
         path = ''
         try:
-            picname = CaseFirstPic.objects.get(Case = caseobj).ImageName
-            path = '/getPic/' + picname
+            picobj = CaseFirstPic.objects.get(Case = caseobj)
+            path = picobj.url
         except CaseFirstPic.DoesNotExist:
             pass
         casels.append(dict(Title = caseobj.Title, path = path))
@@ -278,7 +286,7 @@ def culture(requrst):
     honorpicobjls = HonorPic.objects.all()
     picpathls = []
     for honorpicobj in honorpicobjls:
-        picpathls.append('/getPic/' + honorpicobj.ImageName)
+        picpathls.append(honorpicobj.Picture.url)
     return render_to_response('gree_culture.html', {'companyinfo':Culture.objects.get(Part = 'companyinfo').Content,
                                                     'greemind':Culture.objects.get(Part = 'greemind').Content,
                                                     'leaderword':Culture.objects.get(Part = 'leaderword').Content,

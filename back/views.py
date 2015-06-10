@@ -28,13 +28,8 @@ def getCAPTCHA(request):
     point_color = ['red', 'blue', 'yellow', 'green', 'brown']
     font_size = 25
 
-    nowsys = platform.system()
-    if nowsys == 'Darwin':
-        font = ImageFont.truetype('/Library/Fonts/Arial.ttf',font_size)
-    elif nowsys == 'Windows':
-        font = ImageFont.truetype('Arial.ttf',font_size)
-    else:
-        return HttpResponse('system Error From getCAPTCHA---->nowsys')
+    font_file = os.path.join(settings.BASE_DIR, 'static/fonts/arial.ttf')
+    font = ImageFont.truetype(font_file, font_size) 
     #新建画布
     im = Image.new('RGB',(img_width,img_height),background)
     draw = ImageDraw.Draw(im)
