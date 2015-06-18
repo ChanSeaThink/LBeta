@@ -170,6 +170,9 @@ class News(models.Model):
     class Meta:
         ordering = ['-CreateTime']
 
+    def __unicode__(self):
+        return self.Title
+
 class NewsPic(models.Model):
     '''
     新闻图片。
@@ -181,6 +184,9 @@ class NewsPic(models.Model):
     News = models.ForeignKey('News')
     Picture = models.ImageField(upload_to='news_picture')
     ImageName = models.CharField(max_length= 150)
+
+    def __unicode__(self):
+        return self.ImageName
 
 class CacheNewsPic(models.Model):
     '''
@@ -194,6 +200,9 @@ class CacheNewsPic(models.Model):
     UserID = models.ForeignKey('User')
     Picture = models.ImageField(upload_to='news_picture')
 
+    def __unicode__(self):
+        return self.ImageName
+
 #人才招聘相关的数据表格=========================================================
 class Job(models.Model):
     '''
@@ -204,6 +213,9 @@ class Job(models.Model):
     '''
     Title = models.CharField(max_length = 200)
     Content = models.TextField()
+
+    def __unicode__(self):
+        return self.Title
 
 #企业文化招聘相关的数据表格=========================================================
 class Culture(models.Model):
@@ -216,6 +228,9 @@ class Culture(models.Model):
     Part = models.CharField(max_length = 100)
     Content = models.TextField()
 
+    def __unicode__(self):
+        return self.Part
+
 class HonorPic(models.Model):
     '''
     企业荣誉的数据表
@@ -226,6 +241,9 @@ class HonorPic(models.Model):
     Picture = models.ImageField(upload_to = 'honor_picture')
     ImageName = models.CharField(max_length= 150)
 
+    def __unicode__(self):
+        return self.ImageName
+
 #联系我们相关的数据表格=========================================================
 class ContactUs(models.Model):
     '''
@@ -234,6 +252,9 @@ class ContactUs(models.Model):
     Content:内容；
     '''
     Content = models.TextField()
+
+    def __unicode__(self):
+        return self.Content
 
 #工程展示相关的数据表格=========================================================
 class Case(models.Model):
@@ -248,6 +269,9 @@ class Case(models.Model):
     Content = models.TextField()
     Sequence = models.IntegerField()
 
+    def __unicode__(self):
+        return self.Title
+
 class CaseFirstPic(models.Model):
     '''
     每个项目的封面图片。
@@ -260,6 +284,8 @@ class CaseFirstPic(models.Model):
     Picture = models.ImageField(upload_to='case_first_picture')
     ImageName = models.CharField(max_length= 150)
 
+    def __unicode__(self):
+        return self.ImageName
 
 class CasePic(models.Model):
     '''
@@ -273,6 +299,9 @@ class CasePic(models.Model):
     Picture = models.ImageField(upload_to='case_picture')
     ImageName = models.CharField(max_length= 150)
 
+    def __unicode__(self):
+        return self.ImageName
+
 class CacheCasePic(models.Model):
     '''
     项目图片缓存。
@@ -284,6 +313,9 @@ class CacheCasePic(models.Model):
     ImageName = models.CharField(max_length= 150)
     UserID = models.ForeignKey('User')
     Picture = models.ImageField(upload_to='case_picture')
+
+    def __unicode__(self):
+        return self.ImageName
 
 #店铺展示相关的数据表格=========================================================
 class Shop(models.Model):
@@ -298,6 +330,9 @@ class Shop(models.Model):
     Content = models.TextField()
     Sequence = models.IntegerField()
 
+    def __unicode__(self):
+        return self.Title
+
 class ShopFirstPic(models.Model):
     '''
     每个店面的封面图片。
@@ -309,6 +344,9 @@ class ShopFirstPic(models.Model):
     Shop = models.ForeignKey('Shop')
     Picture = models.ImageField(upload_to='shop_first_picture')
     ImageName = models.CharField(max_length= 150)
+
+    def __unicode__(self):
+        return self.ImageName    
 
 class ShopPic(models.Model):
     '''
@@ -322,6 +360,9 @@ class ShopPic(models.Model):
     Picture = models.ImageField(upload_to='shop_picture')
     ImageName = models.CharField(max_length= 150)
 
+    def __unicode__(self):
+        return self.ImageName
+
 class CacheShopPic(models.Model):
     '''
     店面图片缓存。
@@ -333,3 +374,6 @@ class CacheShopPic(models.Model):
     ImageName = models.CharField(max_length= 150)
     UserID = models.ForeignKey('User')
     Picture = models.ImageField(upload_to='shop_picture')
+
+    def __unicode__(self):
+        return self.ImageName
