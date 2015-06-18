@@ -178,6 +178,7 @@ window.onload=function(){
 				}
 				var fc1=$(this).find("span:eq(0)").text();
 				var sc1=$(this).find("ul>li:eq(0)").text();
+				$("#box").html("");
 				$.ajax({
 					url:"/getProducts",
 					type:"post",
@@ -226,6 +227,7 @@ window.onload=function(){
 			//请求产品
 				var fc1=$(this).parent().closest("li").find("span:eq(0)").text();
 				var sc1=$(this).text();
+				$("#box").html("");
 				$.ajax({
 					url:"/getProducts",
 					type:"post",
