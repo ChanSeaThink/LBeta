@@ -18,21 +18,34 @@
 		top:-19px;
 		font-size:25px;
 	}
-	#qq{
+	#info{
 		position:fixed;
 		right:50px;
-		bottom:100px;
+		bottom:102px;
+	}
+	#info a{
 		padding:5px 15px;
+		padding-bottom:10px;
 		background-color:#226ddd;
 		cursor:pointer;
 	}
-	#qq span{
+	#info a span{
 		color:white;
+		vertical-align:middle;
 	}
-	#qq img{
+	#info a img{
 		width:24px;
 		height:24px;
 		vertical-align:middle;
+	}
+	#info div img{
+		max-width:123px;
+	}
+	#info div p{
+		padding-top:10px;
+		font-size:13px;
+		text-align:center;
+		background-color:white;
 	}
 	#nav{
 		background-color:rgba(65,65,65,0.6);
