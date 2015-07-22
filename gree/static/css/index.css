@@ -89,7 +89,7 @@
 	}
 	#bgpic{
 		position:absolute;
-		top:78px;
+		top:76px;
 		opacity:0.8;
 		z-index:-1;
 	}
@@ -99,14 +99,17 @@
 	#title2{
 		margin-top:135px;
 		margin-bottom:154px;
+		cursor:default;
 	}
 	#img_title{
 		color:white;
 		font-size:60px;
+		text-shadow:4px 4px 0 rgba(34,109,221,.5);
 	}
 	#title2 p:last-child{
 		color:white;
 		font-size:30px;
+		text-shadow:2px 2px 0 rgba(34,109,221,.5);
 	}
 	#title2 p{
 		text-align:center;
@@ -349,6 +352,9 @@
 		min-height:1px;
 		float:left;
 	}
+	#intro>div>a{
+		display:block;
+	}
 	#intro img{
 		display:block;
 		margin:0 auto;
@@ -361,7 +367,6 @@
 		color:#22222a;
 		margin:5px 0;
 		font-size:20px;
-		cursor:default;
 	}
 	.p2{
 		color:#616161;
