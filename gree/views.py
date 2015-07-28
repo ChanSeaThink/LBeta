@@ -142,7 +142,7 @@ def product(requrst):
             path = ''
             try:
                 pinobj = productpicobjls[0]
-                path = pinobj.url
+                path = pinobj.Picture.url
             except IndexError:
                 pass
             bestprols.append(dict(classtwo=classtwo, name=pname, path=path))
