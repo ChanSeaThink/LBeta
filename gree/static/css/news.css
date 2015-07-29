@@ -1,5 +1,6 @@
 @charset "UTF-8";
 	*{margin:0;padding:0;font-family:"微软雅黑";}
+	body{min-width:1110px;}
 	ul{list-style-type:none;}
 	a{text-decoration:none;color:black;}
 	body{}
@@ -215,7 +216,7 @@
 		color:#22222a;
 		line-height:19px;
 		white-space:nowrap;
-		overflow-x:hidden;
+		overflow:hidden;
 		text-overflow:ellipsis;
 	}
 	#page{

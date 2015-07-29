@@ -2245,8 +2245,12 @@ window.onload=function(){
 						alert("标题为空");
 						return;
 					}
+					if(!$("#details .news_edit .alter #text_box").text().replace(/\s/g,"")){
+						alert("内容为空");
+						return;
+					}
 					var text=$("#details .news_edit .alter #text_box").html();
-					text=text.replace(/&amp;/g,"&");
+					text=text.replace(/&amp;/g,"&").replace(/&nbsp;/g," ");
 					var number=parseInt($("#full .news_edit .delete .number").text());
 					$("#waiting").show();
 					$.ajax({

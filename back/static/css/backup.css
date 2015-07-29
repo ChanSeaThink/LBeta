@@ -1,6 +1,6 @@
 @charset "UTF-8";
 	*{margin:0;padding:0;font-family:"微软雅黑"}
-	body{overflow-x:hidden;}
+	body{overflow-x:hidden;min-width:1110px;}
 	ul{list-style-type:none;}
 	td{}
 	select{min-width:120px;}
@@ -243,6 +243,7 @@
 	}
 	#details>div>div>table>tbody>tr>td:first-child{
 		text-align:right;
+		min-width:100px;
 	}
 	#details .index_pic img,#details .products_pic img,#details .news_pic img{
 		width:400px;
